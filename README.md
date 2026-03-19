@@ -34,8 +34,12 @@ docker compose exec frontend npm run build
 
 ## GitHub Pages 公開
 
-1. `docker compose exec frontend npm run build`
-2. 生成された `dist/` を GitHub Pages の公開対象に配置
-3. GitHub Pages を有効化
+`.github/workflows/deploy-pages.yml` で GitHub Actions から自動デプロイする構成です。
+
+1. GitHub の `Settings > Pages` を開く
+2. `Source` を `GitHub Actions` にする
+3. `main` ブランチへ push する
 
 `HashRouter` を使っているため、GitHub Pages のような静的ホスティングでもルート直アクセスの 404 を避けられます。
+
+`dist/` を Git にコミットする必要はありません。Actions 上でビルドした成果物がそのまま Pages にデプロイされます。
