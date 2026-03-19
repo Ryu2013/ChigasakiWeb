@@ -49,13 +49,6 @@ type Post = {
   excerpt: string
 }
 
-type Job = {
-  title: string
-  type: string
-  summary: string
-  points?: string[]
-}
-
 type HomePhoto = {
   src: string
   alt: string
@@ -229,21 +222,6 @@ const newsItems = blogPosts.slice(0, 3).map(({ date, title }) => ({
   title,
 }))
 
-const jobs: Job[] = [
-  {
-    title: 'フロントエンドエンジニア',
-    type: '正社員 / 業務委託',
-    summary:
-      'React と静的構成を軸に、企業サイトや採用サイトの実装を担当します。',
-  },
-  {
-    title: 'Webディレクター',
-    type: '正社員',
-    summary:
-      '要件整理、進行管理、コンテンツ設計まで含めてプロジェクトを前に進める役割です。',
-  },
-]
-
 const companySections: PageSection[] = [
   {
     eyebrow: 'Company',
@@ -266,24 +244,6 @@ const companySections: PageSection[] = [
       '目的から逆算する構成',
       '更新を前提にした運用設計',
       '公開後に改善できる余白を残す実装',
-    ],
-  },
-]
-
-const serviceSections: PageSection[] = [
-  {
-    eyebrow: 'Services',
-    title: '作って終わりではなく、使われる状態まで設計する。',
-    body: 'ヒアリング、情報設計、デザイン、フロントエンド実装、公開までを一貫して対応します。小規模チームに必要な速度と意思決定のしやすさを重視しています。',
-  },
-  {
-    title: '進め方',
-    body: '最初に目的と優先順位を整理し、必要なページだけを確実に公開します。初回公開後は、記事追加や採用訴求の改善にも対応します。',
-    items: [
-      '1. ヒアリングと課題整理',
-      '2. サイトマップと原稿設計',
-      '3. デザインと実装',
-      '4. GitHub Pages で公開',
     ],
   },
 ]
@@ -352,23 +312,6 @@ const contactSpotlight: SpotlightCard = {
   body:
     'まだ要件化できていない段階でも、現状の困りごととゴールが見えていれば十分です。最初の壁打ちから整理します。',
 }
-
-const contactSections: PageSection[] = [
-  {
-    eyebrow: 'Contact',
-    title: '相談段階でも問題ありません。',
-    body: 'サイトリニューアル前の整理、採用ページの追加、公開方法の見直しなど、検討中の段階から相談できます。初回は目的と現状を短く共有してください。',
-  },
-  {
-    title: 'お問い合わせ内容の例',
-    body: '相談の起点が曖昧でも進められるよう、よくあるテーマを整理しています。',
-    items: [
-      '会社サイトを新しくしたい',
-      '採用情報ページだけ先に作りたい',
-      'GitHub Pages で静的公開したい',
-    ],
-  },
-]
 
 const pageVisuals = {
   company: {
@@ -1098,6 +1041,9 @@ function InnerPageLayout({
   ctaLabel: string
   children: ReactNode
 }) {
+  void highlights
+  void spotlight
+
   return (
     <section className={`page-stack inner-page inner-page-${pageName}`}>
       <PageHero
