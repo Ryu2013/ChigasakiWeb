@@ -1,0 +1,88 @@
+:root {
+  font-family:
+    'Avenir Next', 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #22313c;
+  background: linear-gradient(180deg, #fff4df 0%, #f4e7d5 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --ink-strong: #14232d;
+  --ink-soft: #536572;
+  --ink-muted: #7b8b95;
+  --accent: #c85620;
+  --accent-deep: #9d3f16;
+  --border: rgba(20, 35, 45, 0.1);
+  --border-strong: rgba(20, 35, 45, 0.16);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--ink-strong);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.08;
+}
+
+h1 {
+  margin-top: 12px;
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.04em;
+}
+
+h3 {
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+p {
+  margin: 0;
+}
+
+::selection {
+  background: rgba(200, 86, 32, 0.18);
+}
