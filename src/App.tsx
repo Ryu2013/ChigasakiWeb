@@ -16,6 +16,7 @@ import heroImage3 from './assets/horo(3).jpg'
 import careShiftImage from './assets/careshift.png'
 import careShiftLogo from './assets/logo.png'
 import representativeImage from './assets/daihyou.jpg'
+import ebosiImage from './assets/ebosi.svg'
 
 type PageSection = {
   eyebrow?: string
@@ -52,7 +53,7 @@ type Job = {
   title: string
   type: string
   summary: string
-  points: string[]
+  points?: string[]
 }
 
 type HomePhoto = {
@@ -82,7 +83,11 @@ const representativeMessage = {
   title: '代表メッセージ',
   name: '加藤竜一',
   role: '代表',
-  body: '茅ヶ崎WEBは、ただ見た目を整えるだけではなく、事業の輪郭や現場の温度感まで伝わるサイトづくりを目指しています。小さなチームだからこそ、お客様との会話から必要な要素を丁寧に拾い、素早く形にしていくことができます。地域に根ざした事業者の方々が、もっと本業に集中できるように。Webの力を、難しいものではなく身近で使いやすいものとして届けていきます。',
+  body: [
+    '従来のWebサービスは、数百万円規模が当たり前でした。ですが近年はAIが発展し、比較的少人数でもWebアプリケーションを作り、運用できる時代になってきました。',
+    '昨今はさまざまなものが値上がりし、会社経営も厳しくなっています。そんな中、少しでも会社の負担を減らし、少しでも事務仕事を減らして、現場へのリソースに充ててほしい。そんな気持ちで茅ヶ崎WEBは生まれました。',
+    '従来のように、営業、デザイナー、マネージャー、インフラエンジニア、バックエンドエンジニア、フロントエンドエンジニアといった多くの人員を割く高額なアプリケーションではなく、AIリソースを活用し、素早くリーズナブルにITサービスをお届けいたします。',
+  ],
 }
 
 const companyInfoItems = [
@@ -163,12 +168,12 @@ const serviceGroups: ServiceGroup[] = [
     eyebrow: 'Client Work',
     title: '受託開発',
     description:
-      '事業者ごとの目的に合わせて、必要な機能と情報だけを整理しながら制作します。まずは「何を伝えるか」「どう使われるか」を明確にすることから始めます。',
+      'お客様と相談をしながら開発を進めて行きます。まずは必要な機能や利用予想人数などからご予算を提案いたします。お見積りは無料で承っておりますので、お気軽にお問い合わせください。',
     items: [
       {
         name: 'ウェブアプリケーション',
         summary:
-          '業務の流れに合わせた管理画面や予約機能など、日々の運用にフィットするアプリケーションを制作します。',
+          'お客様のご要望に合わせて設計いたします。主にReact + Rails APIを組み合わせた、セキュアでUXの高いアプリケーションをご提供いたします。',
         points: ['業務効率化', '予約・管理機能', '現場に合わせた設計'],
       },
       {
@@ -208,7 +213,7 @@ const blogPosts: Post[] = [
     title: 'ホームページ制作・アプリケーション開発の相談受付を開始しました。',
     category: '受付開始',
     excerpt:
-      '地域事業者の方向けに、ホームページ制作と業務アプリケーション開発の相談受付を始めています。',
+      'ホームページ制作と業務アプリケーション開発の相談受付を始めています。',
   },
   {
     date: '2026.02.24',
@@ -230,14 +235,12 @@ const jobs: Job[] = [
     type: '正社員 / 業務委託',
     summary:
       'React と静的構成を軸に、企業サイトや採用サイトの実装を担当します。',
-    points: ['TypeScript 実務経験', 'UI 実装への責任感', '要件整理への参加意欲'],
   },
   {
     title: 'Webディレクター',
     type: '正社員',
     summary:
       '要件整理、進行管理、コンテンツ設計まで含めてプロジェクトを前に進める役割です。',
-    points: ['顧客折衝経験', '情報設計の理解', '制作進行の実務経験'],
   },
 ]
 
@@ -407,8 +410,8 @@ function App() {
               <ContentPage
                 pageName="company"
                 title="会社概要"
-                lead="茅ヶ崎WEBの考え方と会社情報を紹介します。"
-                intro="湘南・茅ヶ崎を拠点に、企業サイトや採用広報を小さなチームで制作しています。トップページの空気感を保ちながら、内側のページでも判断しやすい情報の並びを重視しました。"
+                lead=""
+                intro="湘南・茅ヶ崎に事務所を構え、地域に密着したIT事業を展開しています。少人数だからこそできる、寄り添ったサービスを提供いたします。"
                 sections={companySections}
                 highlights={companyHighlights}
                 spotlight={companySpotlight}
@@ -443,9 +446,11 @@ function SiteLayout() {
     <div className="site-shell">
       <div className="site-header-wrap">
         <header className="site-header">
-          <div className="brand-block">
-            <p className="brand-mark">CHIGASAKI WEB</p>
-            <p className="brand-copy">もっと現場にリソースを</p>
+          <div className="brand-lockup">
+            <img className="brand-icon" src={ebosiImage} alt="" aria-hidden="true" />
+            <div className="brand-block">
+              <p className="brand-mark">CHIGASAKI WEB</p>
+            </div>
           </div>
           <button
             type="button"
@@ -686,6 +691,9 @@ function HomePage() {
               </article>
             ))}
           </div>
+          <NavLink to="/blog" className="text-link">
+            お知らせ一覧を見る
+          </NavLink>
         </div>
       </section>
 
@@ -1007,7 +1015,9 @@ function ContentPage({
             >
               <p className="eyebrow">Message</p>
               <h2 id="company-message-title">{representativeMessage.title}</h2>
-              <p>{representativeMessage.body}</p>
+              {representativeMessage.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
               <div className="company-message-signature">
                 <span>{representativeMessage.role}</span>
                 <strong>{representativeMessage.name}</strong>
@@ -1128,8 +1138,8 @@ function ServicesPage() {
     <InnerPageLayout
       pageName="services"
       title="サービス"
-      lead="コーポレートサイト、採用広報、公開後の運用改善まで対応します。"
-      intro="トップページで見せている軽やかな印象を保ちながら、内側では相談から公開までの流れがひと目で分かる構成にしています。"
+      lead="当社ではAIリソースを用いたリーズナブルなITサービスを展開しております。"
+      intro="最速で当日にデモ品をご提案できます。"
       highlights={serviceHighlights}
       spotlight={serviceSpotlight}
       visual={pageVisuals.services}
@@ -1183,8 +1193,8 @@ function BlogPage() {
     <InnerPageLayout
       pageName="blog"
       title="お知らせ"
-      lead="サイト公開や受付開始、サービス更新などのお知らせを掲載します。"
-      intro="制作会社としての更新情報を、短く分かりやすく確認できる一覧ページとして構成しています。"
+      lead="茅ヶ崎WEBの最新情報をお知らせします。"
+      intro="サービス開始やサイト更新など、最新のお知らせを随時掲載しています。"
       highlights={blogHighlights}
       spotlight={blogSpotlight}
       visual={pageVisuals.blog}
@@ -1217,8 +1227,8 @@ function CareersPage() {
     <InnerPageLayout
       pageName="careers"
       title="採用情報"
-      lead="少人数で、考えて作る力を持ったメンバーを募集しています。"
-      intro="トップページの『現場にもっと時間とリソースを』という考え方を、そのままチームづくりにも接続するページにしています。"
+      lead="茅ヶ崎WEBでは、営業やインフラ、フロント、バックエンドといった分離はせず、プログラマーが直接お客様と密接に連携しサービスを作り上げていきます。"
+      intro="領域にとらわれない働き方ができます。"
       highlights={careersHighlights}
       spotlight={careersSpotlight}
       visual={pageVisuals.careers}
@@ -1227,20 +1237,10 @@ function CareersPage() {
       ctaLink="/contact"
       ctaLabel="お問い合わせへ"
     >
-      <div className="card-grid careers-card-grid">
-        {jobs.map((job) => (
-          <article key={job.title} className="info-card career-card">
-            <p className="job-type">{job.type}</p>
-            <h2>{job.title}</h2>
-            <p>{job.summary}</p>
-            <ul className="detail-list">
-              {job.points.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
+      <article className="info-card career-card career-empty-card">
+        <p className="eyebrow">Careers</p>
+        <h2>現在募集している職種はありません</h2>
+      </article>
     </InnerPageLayout>
   )
 }
@@ -1250,8 +1250,8 @@ function ContactPage() {
     <InnerPageLayout
       pageName="contact"
       title="お問い合わせ"
-      lead="フォーム送信のバックエンドは持たず、初回連絡先を明確にする構成です。"
-      intro="トップページの親しみやすさを維持しつつ、連絡前に迷わない情報整理を優先したページ構成にしています。"
+      lead="サービスに関するご相談やご質問を受け付けています。"
+      intro="相談のみでも構いませんので、お気軽にお問い合わせください。"
       highlights={contactHighlights}
       spotlight={contactSpotlight}
       visual={pageVisuals.contact}
